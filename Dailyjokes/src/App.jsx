@@ -5,7 +5,6 @@ import JokesPage from './components/JokesPage.jsx'
 const App = () => {
   return (
     <div>
-      {/* <HomePage /> */}
       <JokesPage />
       
     </div>
