@@ -1,5 +1,5 @@
 import React from 'react'
-import JokesPage from './components/jokesPage'
+import JokesPage from './components/JokesPage.jsx'
 // import HomePage from './Pages/HomePage'
 
 const App = () => {
