@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import { Filter, Smartphone } from 'lucide-react';
+import { Sparkles, Share2, Filter, ThumbsUp } from 'lucide-react';
 import jokesData from './Jokes.json';
 import JokeCard from './JokeCard.jsx';
 
@@ -14,44 +14,25 @@ const JokesPage = () => {
   const [isRevealed, setIsRevealed] = useState(false);
   const controls = useAnimation();
 
-  // Initialize jokes and categories
   useEffect(() => {
     const processedJokes = jokesData.map(joke => ({
       setup: joke.setup,
       punchline: joke.punchline,
       type: joke.type || 'general',
     }));
-
     setJokes(processedJokes);
     const uniqueCategories = new Set(processedJokes.map(joke => joke.type));
     setCategories(['all', ...Array.from(uniqueCategories)]);
     getRandomJoke(processedJokes);
   }, []);
 
-  // Filter jokes based on selected category
-  const filteredJokes = selectedCategory === 'all'
-    ? jokes
-    : jokes.filter(joke => joke.type === selectedCategory);
-
-  // Get random joke function
-  const getRandomJoke = (jokesList = filteredJokes) => {
+  const getRandomJoke = (jokesList = jokes) => {
     if (jokesList.length === 0) return;
     const randomIndex = Math.floor(Math.random() * jokesList.length);
     setCurrentJoke(jokesList[randomIndex]);
     setIsRevealed(false);
   };
 
-  // Handle category selection
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setShowCategoryFilter(false);
-    const newFilteredJokes = category === 'all' 
-      ? jokes 
-      : jokes.filter(joke => joke.type === category);
-    getRandomJoke(newFilteredJokes);
-  };
-
-  // Handle drag gesture
   const handleDragEnd = (event, info) => {
     const DRAG_THRESHOLD = 50;
     if (Math.abs(info.offset.x) > DRAG_THRESHOLD) {
@@ -82,60 +63,52 @@ const JokesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-100 to-blue-100 p-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-violet-800 mb-4">Joke Cards</h1>
-          <div className="flex justify-center gap-4">
-            {/* <button
-              onClick={() => setShowCategoryFilter(!showCategoryFilter)}
-              className="inline-flex items-center px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg transition-colors"
-            >
-              <Filter className="mr-2 h-4 w-4" />
-              Categories
-            </button>
-            <button
-              className="inline-flex items-center px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg transition-colors"
-              onClick={() => setIsRevealed(true)}
-            >
-              <Smartphone className="mr-2 h-4 w-4" />
-              Show Punchline
-            </button> */}
-          </div>
-        </div>
+    <div className="min-h-screen bg-black">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-yellow-400 rounded-full blur-3xl opacity-20" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-yellow-400 rounded-full blur-3xl opacity-20" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto px-4 py-8">
+        {/* Header */}
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-5xl font-bold text-yellow-400 mb-2 flex items-center justify-center gap-2">
+            <Sparkles className="w-8 h-8" />
+            Twisted Tickles
+            <Sparkles className="w-8 h-8" />
+          </h1>
+          <p className="text-yellow-200/60 text-lg">Your daily dose of laughter!</p>
+        </motion.div>
 
         {/* Category Filter */}
-        {showCategoryFilter && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl p-6 w-full max-w-md">
-              <h2 className="text-xl font-semibold mb-4">Select Category</h2>
-              <div className="grid grid-cols-2 gap-2">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => handleCategorySelect(category)}
-                    className={`p-2 rounded-lg transition-colors ${
-                      selectedCategory === category
-                        ? 'bg-violet-600 text-white'
-                        : 'bg-gray-100 hover:bg-violet-100'
-                    }`}
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                ))}
-              </div>
+        <motion.div
+          initial={false}
+          animate={showCategoryFilter ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+          className="overflow-hidden mb-6"
+        >
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map(category => (
               <button
-                onClick={() => setShowCategoryFilter(false)}
-                className="mt-4 w-full p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+                  ${selectedCategory === category 
+                    ? 'bg-yellow-400 text-black' 
+                    : 'bg-yellow-400/10 text-yellow-400 hover:bg-yellow-400/20'}`}
               >
-                Close
+                {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
-            </div>
+            ))}
           </div>
-        )}
+        </motion.div>
 
-        {/* Joke Card with Drag */}
-        <div className="relative h-[400px] flex items-center justify-center">
+        {/* Main Joke Card */}
+        <div className="relative h-[450px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             {currentJoke && (
               <motion.div
@@ -144,22 +117,64 @@ const JokesPage = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.7}
                 onDragEnd={handleDragEnd}
-                
                 className="w-full touch-pan-x"
               >
-                <JokeCard 
-                  joke={currentJoke}
-                  isRevealed={isRevealed}
-                  likedJokes={likedJokes}
-                  setLikedJokes={setLikedJokes}
-                />
+                <div className="bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-400 p-1 rounded-2xl shadow-lg">
+                  <div className="bg-black rounded-xl p-6 min-h-[300px] flex flex-col justify-between">
+                    <div className="space-y-6">
+                      <p className="text-yellow-400 text-xl font-medium">{currentJoke.setup}</p>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: isRevealed ? 1 : 0 }}
+                        className="text-yellow-200 text-lg"
+                      >
+                        {isRevealed ? currentJoke.punchline : '***************'}
+                      </motion.p>
+                    </div>
+                    <div className="flex justify-between items-center mt-4">
+                      <span className="text-yellow-400/60 text-sm">
+                        {currentJoke.type.charAt(0).toUpperCase() + currentJoke.type.slice(1)}
+                      </span>
+                      <div className="flex gap-3">
+                        <button 
+                          onClick={() => setLikedJokes(prev => 
+                            new Set([...prev, currentJoke.setup])
+                          )}
+                          className="text-yellow-400 hover:text-yellow-300 transition-colors"
+                        >
+                          <ThumbsUp className="w-5 h-5" />
+                        </button>
+                        <button className="text-yellow-400 hover:text-yellow-300 transition-colors">
+                          <Share2 className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        <div className="text-center mt-8 text-gray-600">
-          Swipe to see next joke • Scratch or shake to reveal punchline
+        {/* Controls */}
+        <div className="flex justify-center gap-4 mt-8">
+          <button
+            onClick={() => setShowCategoryFilter(!showCategoryFilter)}
+            className="flex items-center gap-2 px-6 py-3 bg-yellow-400/10 text-yellow-400 rounded-full hover:bg-yellow-400/20 transition-colors"
+          >
+            <Filter className="w-5 h-5" />
+            Categories
+          </button>
+          <button
+            onClick={() => setIsRevealed(!isRevealed)}
+            className="px-6 py-3 bg-yellow-400 text-black rounded-full font-medium hover:bg-yellow-300 transition-colors"
+          >
+            {isRevealed ? 'Hide Punchline' : 'Reveal Punchline'}
+          </button>
+        </div>
+
+        <div className="text-center mt-8 text-yellow-400/60">
+          Swipe left or right for next joke
         </div>
       </div>
     </div>
