@@ -202,7 +202,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-lg mx-auto p-4 flex items-center justify-center ">
+    <div className=" mt-6 w-full max-w-lg mx-auto p-4 flex items-center justify-center ">
       <div className="bg-black border-2 border-yellow-300 rounded-xl shadow-[0_0_20px_rgba(253,224,71,0.3)] p-6 w-full relative">
         {/* Top section with type badge and interaction buttons */}
         <div className="flex justify-between items-start mb-6">
@@ -306,8 +306,16 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
             Copied to clipboard!
           </div>
         )}
+        <button
+          onClick={() => setIsRevealed(!isRevealed)}
+          className=" mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full shadow-md"
+        >
+          {isRevealed ? "Hide Punchline" : "Reveal Punchline"}
+        </button>
       </div>
+      
     </div>
+    
   );
 };
 
