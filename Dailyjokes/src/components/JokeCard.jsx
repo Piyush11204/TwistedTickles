@@ -109,26 +109,87 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
     (shakeCount / 5) * 100
   );
 
+  const generateShareMessage = () => {
+    const shareUrl = 'https://twisted-tickles.vercel.app';
+    
+    // Create a more engaging message format
+    return `$ JOKE OF THE DAY! \n\n` +
+           `${setup}\n\n` +
+           `...\n\n` +
+           `${punchline}\n\n` +
+           `Share the laughter at:\n` +
+           `${shareUrl}`;
+  };
+  
   const handleShare = async (platform) => {
-    const jokeText = `${setup}\n\n${isRevealed ? punchline : "Reveal the punchline yourself at our app!"}`;
+    
+    const shareMessage = generateShareMessage();
     
     switch (platform) {
       case 'whatsapp':
-        window.open(`https://wa.me/?text=${encodeURIComponent(jokeText)}`);
+        // WhatsApp allows sharing both text and image URL
+        const whatsappMessage = `${shareMessage}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         break;
+        
       case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(jokeText)}`);
+        // Use Facebook Share Dialog API for better sharing with image
+        FB.ui({
+          method: 'share',
+          href: 'https://twisted-tickles.vercel.app',
+          quote: shareMessage,
+          hashtag: '#DailyJoke'
+        });
         break;
+        
       case 'instagram':
-        window.open(`https://www.instagram.com/direct/new/?text=${encodeURIComponent(jokeText)}`);
+
+        const instagramMessage = `${shareMessage}\n\n#DailyJoke #Humor #FunnyMoments`;
+        window.open(`https://www.instagram.com/?text=${encodeURIComponent(instagramMessage)}`, '_blank');
         break;
+      case 'twitter':
+        // Add Twitter sharing with image
+        const twitterText = shareMessage.substring(0, 280); // Twitter character limit
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${encodeURIComponent(imageUrl)}`,
+          '_blank'
+        );
+        break;
+        
       case 'copy':
-        await navigator.clipboard.writeText(jokeText);
+        // Enhanced clipboard copy with image URL
+        const fullMessage = `${shareMessage}\n\nSee joke image: ${imageUrl}`;
+        await navigator.clipboard.writeText(fullMessage);
+        
+        // Show success message with animation
         setCopySuccess(true);
+        toast({
+          title: "Copied!",
+          description: "Joke and image link copied to clipboard",
+          duration: 2000
+        });
         setTimeout(() => setCopySuccess(false), 2000);
         break;
     }
+    
+    // Track sharing analytics
+    trackShare(platform);
+    
+    // Close share menu with animation
     setShowShareMenu(false);
+  };
+  
+  // Helper function to track sharing analytics
+  const trackShare = (platform) => {
+    try {
+      analytics.track('joke_shared', {
+        platform,
+        jokeType: type,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('Error tracking share:', error);
+    }
   };
 
   const handleLike = () => {
