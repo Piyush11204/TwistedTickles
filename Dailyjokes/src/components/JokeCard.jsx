@@ -6,26 +6,41 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [scratchProgress, setScratchProgress] = useState(0);
-
-  // Shake detection
+  const [shakeCount, setShakeCount] = useState(0);
+  
+  // Shake detection with counter
   useEffect(() => {
-    let shakeThreshold = 15;
+    let shakeThreshold = 25; // Increased threshold
     let lastX = 0, lastY = 0, lastZ = 0;
     let lastUpdate = 0;
+    let shakeCooldown = false;
 
     const handleShake = (event) => {
       const current = event.accelerationIncludingGravity;
-      if (!current) return;
+      if (!current || shakeCooldown) return;
 
       const currentTime = new Date().getTime();
-      if ((currentTime - lastUpdate) > 100) {
+      if ((currentTime - lastUpdate) > 250) { // Increased time between checks
         const diffTime = currentTime - lastUpdate;
         lastUpdate = currentTime;
 
         const speed = Math.abs(current.x + current.y + current.z - lastX - lastY - lastZ) / diffTime * 10000;
 
         if (speed > shakeThreshold) {
-          setIsRevealed(true);
+          setShakeCount(prev => {
+            const newCount = prev + 1;
+            if (newCount >= 5) { // Require 5 good shakes
+              setIsRevealed(true);
+              return 0;
+            }
+            return newCount;
+          });
+
+          // Add cooldown to prevent rapid counting
+          shakeCooldown = true;
+          setTimeout(() => {
+            shakeCooldown = false;
+          }, 500);
         }
 
         lastX = current.x;
@@ -55,7 +70,10 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
     setLikedJokes(newLikedJokes);
   };
 
-  // Scratch handling
+  // Enhanced scratch handling
+  const [scratchedAreas, setScratchedAreas] = useState(new Set());
+  const gridSize = 10; // 10x10 grid for tracking scratched areas
+
   const handleScratchStart = (e) => {
     setIsDragging(true);
     handleScratchMove(e);
@@ -70,19 +88,40 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
     
-    // Update scratch progress
-    const totalArea = rect.width * rect.height;
-    const newProgress = Math.min(scratchProgress + 1000 / totalArea, 100);
-    setScratchProgress(newProgress);
+    // Convert position to grid cell
+    const cellX = Math.floor((x / rect.width) * gridSize);
+    const cellY = Math.floor((y / rect.height) * gridSize);
+    const cellKey = `${cellX}-${cellY}`;
     
-    if (newProgress > 50) {
-      setIsRevealed(true);
+    // Update scratched areas
+    if (cellX >= 0 && cellX < gridSize && cellY >= 0 && cellY < gridSize) {
+      setScratchedAreas(prev => {
+        const newAreas = new Set(prev);
+        newAreas.add(cellKey);
+        
+        // Calculate progress based on unique areas scratched
+        const newProgress = (newAreas.size / (gridSize * gridSize)) * 100;
+        setScratchProgress(newProgress);
+        
+        // Reveal when 70% of the area has been scratched
+        if (newProgress > 70) {
+          setIsRevealed(true);
+        }
+        
+        return newAreas;
+      });
     }
   };
 
   const handleScratchEnd = () => {
     setIsDragging(false);
   };
+
+  // Calculate reveal progress for visual feedback
+  const revealProgress = Math.max(
+    (scratchProgress / 70) * 100, // Scratch progress
+    (shakeCount / 5) * 100 // Shake progress
+  );
 
   return (
     <div className="min-h-screen w-full max-w-lg mx-auto p-4 flex items-center justify-center">
@@ -118,9 +157,19 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
           {isRevealed ? (
             <p className="text-gray-600 italic">{punchline}</p>
           ) : (
-            <div className="absolute inset-0 bg-gray-300 rounded-lg flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-300 rounded-lg flex flex-col items-center justify-center">
+              <div className="w-full px-8 mb-4">
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-violet-600 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${revealProgress}%` }}
+                  />
+                </div>
+              </div>
               <p className="text-gray-600 text-center px-4">
-                Scratch here or shake your device to reveal!
+                {revealProgress < 30 && "Keep scratching or shaking!"}
+                {revealProgress >= 30 && revealProgress < 70 && "Almost there..."}
+                {revealProgress >= 70 && "Just a little more!"}
               </p>
             </div>
           )}
