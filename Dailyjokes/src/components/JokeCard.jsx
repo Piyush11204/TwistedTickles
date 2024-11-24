@@ -63,7 +63,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
 
   // Scratch handling remains the same
   const [scratchedAreas, setScratchedAreas] = useState(new Set());
-  const gridSize = 10;
+  const gridSize = 15;
 
   const handleScratchStart = (e) => {
     setIsDragging(true);
@@ -145,10 +145,9 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
       case 'instagram':
 
         const instagramMessage = `${shareMessage}\n\n#DailyJoke #Humor #FunnyMoments`;
-        window.open(`https://www.instagram.com/?text=${encodeURIComponent(instagramMessage)}`, '_blank');
+        window.open(`https://www.instagram.com/direct/inbox/?text=${encodeURIComponent(instagramMessage)}`);
         break;
       case 'twitter':
-        // Add Twitter sharing with image
         const twitterText = shareMessage.substring(0, 280); // Twitter character limit
         window.open(
           `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${encodeURIComponent(imageUrl)}`,

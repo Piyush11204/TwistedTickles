@@ -88,9 +88,9 @@ const JokesPage = () => {
         animate={{ y: 0, opacity: 1 }}
         className="text-center mb-12"
      />
-        <h1 className="text-4xl text-center font-bold text-yellow-400 mb-2 flex items-center justify-center gap-2">
+        <h1 className="text-4xl text-center font-bold text-yellow-400 mb-2 flex items-center justify-center gap-1">
           <Sparkles className="w-8 h-8" />
-          Twisted Tickles
+          Twisted Tickle
           <Sparkles className="w-8 h-8" />
         </h1>
         <p className="text-yellow-200/60 text-center text-lg">Your daily dose of laughter!</p>
