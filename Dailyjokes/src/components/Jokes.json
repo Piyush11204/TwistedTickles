@@ -170,9 +170,264 @@
     "punchline": "Because they don't C#."
   },
   {
+    "type": "knock-knock",
+    "setup": "Knock knock. \nWho's there? \nOlive.",
+    "punchline": "Olive who? Olive you, and I just wanted to say it!"
+  },
+  {
+    "type": "knock-knock",
+    "setup": "Knock knock. \nWho's there? \nTank.",
+    "punchline": "Tank who? You're welcome!"
+  },
+  {
     "type": "general",
     "setup": "Why did the mushroom get invited to the party?",
     "punchline": "Because he was a fungi."
+  },
+  {
+    "type": "dark",
+    "setup": "Why don’t graveyards ever get overcrowded?",
+    "punchline": "Because people are dying to get in."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the man fall into the well?",
+    "punchline": "Because he couldn’t see that well."
+  },
+  {
+    "type": "dark",
+    "setup": "Why don’t orphans play hide and seek?",
+    "punchline": "Because good luck finding someone to look for them."
+  },
+  {
+    "type": "dark",
+    "setup": "What’s the last thing that goes through a bug’s mind when it hits a windshield?",
+    "punchline": "Its butt."
+  },
+  {
+    "type": "dark",
+    "setup": "Why don’t cannibals eat clowns?",
+    "punchline": "Because they taste funny."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the scarecrow get promoted?",
+    "punchline": "Because he was outstanding in his field… unlike the last guy, who was buried there."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the skeleton skip prom?",
+    "punchline": "Because he had no body to go with."
+  },
+  {
+    "type": "dark",
+    "setup": "What’s worse than finding a worm in your apple?",
+    "punchline": "Finding half a worm."
+  },
+  {
+    "type": "dark",
+    "setup": "Why was the math book sad?",
+    "punchline": "Because it had too many problems, and therapy wasn't helping."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the orphan bring a ladder to school?",
+    "punchline": "To reach new heights… because there’s no one at home to lift them up."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the woman refuse to play cards with the patriarchy?",
+    "punchline": "Because they always deal her a bad hand."
+  },
+  {
+    "type": "dark",
+    "setup": "What’s a feminist’s least favorite kitchen appliance?",
+    "punchline": "The one she’s expected to use."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the feminist break up with her boyfriend?",
+    "punchline": "Because he kept mansplaining her own opinions to her."
+  },
+  {
+    "type": "dark",
+    "setup": "Why don’t feminists like traditional fairy tales?",
+    "punchline": "Because saving yourself isn’t as magical as waiting for Prince Charming."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the patriarchy start working out?",
+    "punchline": "To try and lift the burden of equality off its shoulders."
+  },
+  {
+    "type": "dark",
+    "setup": "Why don’t feminists like taking elevators?",
+    "punchline": "Because they'd rather take the stairs than wait for society to level up."
+  },
+  {
+    "type": "dark",
+    "setup": "What’s a feminist’s favorite type of joke?",
+    "punchline": "One that doesn’t punch down."
+  },
+  {
+    "type": "dark",
+    "setup": "Why did the feminist start a bakery?",
+    "punchline": "Because she wanted to make her own bread instead of waiting for crumbs."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple bring a ladder to bed?",
+    "punchline": "Because they wanted to take their love life to new heights."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why don’t relationships come with manuals?",
+    "punchline": "Because half the fun is pushing the wrong buttons."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did she break up with her boyfriend?",
+    "punchline": "Because he thought foreplay was just pressing 'play' on Netflix."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple take a math class together?",
+    "punchline": "Because their love life needed more multiplying and less dividing."
+  },
+  {
+    "type": "relationship",
+    "setup": "What’s the key to a successful relationship?",
+    "punchline": "Knowing when to zip it and when to unzip it."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why don’t couples argue in bed?",
+    "punchline": "Because horizontal discussions always lead to happy endings."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring a stopwatch to their date?",
+    "punchline": "To see if he could last more than five minutes for once."
+  },
+  {
+    "type": "relationship",
+    "setup": "What’s a relationship like a Wi-Fi signal?",
+    "punchline": "Strong when you’re close, but shaky when you start wandering."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend get a GPS?",
+    "punchline": "Because he kept getting lost in her curves."
+  },
+  {
+    "type": "relationship",
+    "setup": "What’s the difference between a relationship and a job?",
+    "punchline": "You can quit the job without feeling guilty about it every night."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why do couples love cooking together?",
+    "punchline": "Because they get to spice things up in more ways than one."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring a mirror to the bedroom?",
+    "punchline": "Because she wanted to reflect on their performance."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend start lifting weights?",
+    "punchline": "Because she said she wanted someone who could handle her... emotionally and physically."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why don’t relationships need fire alarms?",
+    "punchline": "Because the sparks usually burn out before the fire starts."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple break up after their camping trip?",
+    "punchline": "Because he couldn’t pitch a tent, and she wasn’t impressed."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend call her boyfriend a magician?",
+    "punchline": "Because he made her clothes disappear... too fast."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend bring a ruler to bed?",
+    "punchline": "To prove he was giving her more than just average effort."
+  },
+  {
+    "type": "relationship",
+    "setup": "What’s a couple’s favorite type of weather?",
+    "punchline": "When it’s overcast—so they can stay in bed all day."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple go to therapy?",
+    "punchline": "Because he thought 'open up' only applied to her legs."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring whipped cream to their argument?",
+    "punchline": "Because she knew it would be sweeter to make up afterward."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend bring a map to bed?",
+    "punchline": "Because he wanted to find her G-spot... and he was lost."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple bring a camera to bed?",
+    "punchline": "Because they wanted to capture the moment... and post it on Instagram."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring a calculator to bed?",
+    "punchline": "Because she wanted to multiply their pleasure."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend bring a compass to bed?",
+    "punchline": "Because he wanted to find her true north."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple bring a map to bed?",
+    "punchline": "Because they wanted to explore each other’s bodies."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring a ruler to bed?",
+    "punchline": "Because she wanted to measure his performance."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend bring a stopwatch to bed?",
+    "punchline": "Because he wanted to see if he could last longer than five minutes."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple bring a camera to bed?",
+    "punchline": "Because they wanted to capture the moment... and post it on Instagram."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the girlfriend bring a calculator to bed?",
+    "punchline": "Because she wanted to multiply their pleasure."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the boyfriend bring a compass to bed?",
+    "punchline": "Because he wanted to find her true north."
+  },
+  {
+    "type": "relationship",
+    "setup": "Why did the couple bring a map to bed?",
+    "punchline": "Because they wanted to explore each other’s bodies."
   },
   {
     "type": "general",
