@@ -88,42 +88,15 @@ const JokesPage = () => {
         animate={{ y: 0, opacity: 1 }}
         className="text-center mb-12"
      />
-        <h1 className="text-5xl font-bold text-yellow-400 mb-2 flex items-center justify-center gap-2">
+        <h1 className="text-4xl text-center font-bold text-yellow-400 mb-2 flex items-center justify-center gap-2">
           <Sparkles className="w-8 h-8" />
           Twisted Tickles
           <Sparkles className="w-8 h-8" />
         </h1>
         <p className="text-yellow-200/60 text-center text-lg">Your daily dose of laughter!</p>
 
-        {/* Category Filter */}
-        {showCategoryFilter && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl p-6 w-full max-w-md">
-              <h2 className="text-xl font-semibold mb-4">Select Category</h2>
-              <div className="grid grid-cols-2 gap-2">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => handleCategorySelect(category)}
-                    className={`p-2 rounded-lg transition-colors ${
-                      selectedCategory === category
-                        ? 'bg-violet-600 text-white'
-                        : 'bg-gray-100 hover:bg-violet-100'
-                    }`}
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => setShowCategoryFilter(false)}
-                className="mt-4 w-full p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
+      
+       
 
         {/* Joke Card with Drag */}
         <div className="relative h-[400px] flex items-center justify-center">
@@ -149,7 +122,7 @@ const JokesPage = () => {
           </AnimatePresence>
         </div>
 
-        <div className="text-center mt-8 text-gray-600">
+        <div className="text-center mt-8 text-yellow-400">
           Swipe to see next joke • Scratch or shake to reveal punchline
         </div>
       </div>
