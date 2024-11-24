@@ -203,11 +203,11 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-lg mx-auto p-4 flex items-center justify-center">
-      <div className="bg-white rounded-xl shadow-xl p-6 w-full relative">
+    <div className="min-h-screen w-full max-w-lg mx-auto p-4 flex items-center justify-center ">
+      <div className="bg-black border-2 border-yellow-300 rounded-xl shadow-[0_0_20px_rgba(253,224,71,0.3)] p-6 w-full relative">
         {/* Top section with type badge and interaction buttons */}
         <div className="flex justify-between items-start mb-6">
-          <span className="px-4 py-1 bg-violet-100 text-violet-800 rounded-full text-sm">
+          <span className="px-4 py-1 bg-yellow-300 text-black rounded-full text-sm font-bold animate-pulse">
             {type}
           </span>
           <div className="flex gap-2">
@@ -215,8 +215,8 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
               onClick={handleLike}
               className={`p-2 rounded-full transition-colors ${
                 likedJokes.has(setup)
-                  ? 'bg-pink-100 text-pink-600'
-                  : 'bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600'
+                  ? 'bg-yellow-300 text-black'
+                  : 'bg-black border-2 border-yellow-300 text-yellow-300 hover:bg-yellow-300 hover:text-black'
               }`}
             >
               <ThumbsUp className="h-5 w-5" />
@@ -224,38 +224,38 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
             <div className="relative">
               <button
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                className="p-2 rounded-full bg-black border-2 border-yellow-300 text-yellow-300 hover:bg-yellow-300 hover:text-black transition-colors"
               >
                 <Share2 className="h-5 w-5" />
               </button>
               
               {/* Custom Share Menu */}
               {showShareMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10">
+                <div className="absolute right-0 mt-2 w-48 bg-black border-2 border-yellow-300 rounded-lg shadow-[0_0_10px_rgba(253,224,71,0.3)] py-2 z-10">
                   <button
                     onClick={() => handleShare('facebook')}
-                    className="w-full px-4 py-2 flex items-center gap-2 hover:bg-gray-100 transition-colors"
+                    className="w-full px-4 py-2 flex items-center gap-2 text-yellow-300 hover:bg-yellow-300 hover:text-black transition-colors"
                   >
                     <Facebook className="h-4 w-4" />
                     <span>Facebook</span>
                   </button>
                   <button
                     onClick={() => handleShare('whatsapp')}
-                    className="w-full px-4 py-2 flex items-center gap-2 hover:bg-gray-100 transition-colors"
+                    className="w-full px-4 py-2 flex items-center gap-2 text-yellow-300 hover:bg-yellow-300 hover:text-black transition-colors"
                   >
                     <MessageCircle className="h-4 w-4" />
                     <span>WhatsApp</span>
                   </button>
                   <button
                     onClick={() => handleShare('instagram')}
-                    className="w-full px-4 py-2 flex items-center gap-2 hover:bg-gray-100 transition-colors"
+                    className="w-full px-4 py-2 flex items-center gap-2 text-yellow-300 hover:bg-yellow-300 hover:text-black transition-colors"
                   >
                     <Instagram className="h-4 w-4" />
                     <span>Instagram</span>
                   </button>
                   <button
                     onClick={() => handleShare('copy')}
-                    className="w-full px-4 py-2 flex items-center gap-2 hover:bg-gray-100 transition-colors"
+                    className="w-full px-4 py-2 flex items-center gap-2 text-yellow-300 hover:bg-yellow-300 hover:text-black transition-colors"
                   >
                     <Copy className="h-4 w-4" />
                     <span>Copy to clipboard</span>
@@ -267,11 +267,11 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         </div>
 
         {/* Joke setup */}
-        <h2 className="text-xl font-semibold mb-4">{setup}</h2>
+        <h2 className="text-xl font-bold mb-4 text-yellow-300 text-shadow-neon">{setup}</h2>
 
         {/* Punchline reveal area */}
         <div 
-          className="relative min-h-[150px] bg-gray-100 rounded-lg p-4 cursor-pointer touch-none"
+          className="relative min-h-[150px] bg-black border-2 border-yellow-300 rounded-lg p-4 cursor-pointer touch-none"
           onMouseDown={handleScratchStart}
           onMouseMove={handleScratchMove}
           onMouseUp={handleScratchEnd}
@@ -281,18 +281,18 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
           onTouchEnd={handleScratchEnd}
         >
           {isRevealed ? (
-            <p className="text-gray-600 italic">{punchline}</p>
+            <p className="text-yellow-300 italic">{punchline}</p>
           ) : (
-            <div className="absolute inset-0 bg-gray-300 rounded-lg flex flex-col items-center justify-center">
+            <div className="absolute inset-0 bg-black border-2 border-yellow-300 rounded-lg flex flex-col items-center justify-center">
               <div className="w-full px-8 mb-4">
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-black border border-yellow-300 rounded-full h-2">
                   <div 
-                    className="bg-violet-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-yellow-300 h-2 rounded-full transition-all duration-300 shadow-[0_0_10px_rgba(253,224,71,0.5)]"
                     style={{ width: `${revealProgress}%` }}
                   />
                 </div>
               </div>
-              <p className="text-gray-600 text-center px-4">
+              <p className="text-yellow-300 text-center px-4 animate-pulse">
                 {revealProgress < 30 && "Keep scratching or shaking!"}
                 {revealProgress >= 30 && revealProgress < 70 && "Almost there..."}
                 {revealProgress >= 70 && "Just a little more!"}
@@ -303,7 +303,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
 
         {/* Copy success message */}
         {copySuccess && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black px-4 py-2 rounded-full text-sm font-bold animate-bounce">
             Copied to clipboard!
           </div>
         )}
