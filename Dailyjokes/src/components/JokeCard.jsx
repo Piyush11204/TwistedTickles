@@ -31,7 +31,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         if (speed > shakeThreshold) {
           setShakeCount(prev => {
             const newCount = prev + 1;
-            if (newCount >= 3) {
+            if (newCount >= 5) {
               setIsRevealed(true);
               return 0;
             }
@@ -120,9 +120,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(jokeText)}`);
         break;
       case 'instagram':
-        await navigator.clipboard.writeText(jokeText);
-        setCopySuccess(true);
-        setTimeout(() => setCopySuccess(false), 2000);
+        window.open(`https://www.instagram.com/direct/new/?text=${encodeURIComponent(jokeText)}`);
         break;
       case 'copy':
         await navigator.clipboard.writeText(jokeText);
