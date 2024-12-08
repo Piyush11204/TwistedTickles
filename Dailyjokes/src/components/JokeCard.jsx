@@ -39,9 +39,9 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
             return newCount;
           });
 
-          shakeCooldown = false;
+          shakeCooldown = true;
           setTimeout(() => {
-            shakeCooldown = true;
+            shakeCooldown = false;
           }, 500);
         }
 
