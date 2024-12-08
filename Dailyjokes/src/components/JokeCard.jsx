@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ThumbsUp, Share2, Copy, Facebook, MessageCircle, Instagram } from "lucide-react";
 
+// eslint-disable-next-line react/prop-types
 const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   const { setup, punchline, type } = joke;
   const [isRevealed, setIsRevealed] = useState(false);
@@ -38,7 +39,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
             return newCount;
           });
 
-          shakeCooldown = true;
+          shakeCooldown = false;
           setTimeout(() => {
             shakeCooldown = true;
           }, 500);
@@ -91,7 +92,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         const newProgress = (newAreas.size / (gridSize * gridSize)) * 100;
         setScratchProgress(newProgress);
         
-        if (newProgress > 40) {
+        if (newProgress > 50) {
           setIsRevealed(true);
         }
         
@@ -105,8 +106,8 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   };
 
   const revealProgress = Math.max(
-    (scratchProgress / 45) * 100,
-    (shakeCount / 10) * 100
+    (scratchProgress / 55) * 100,
+    (shakeCount / 5) * 100
   );
 
   const generateShareMessage = () => {
