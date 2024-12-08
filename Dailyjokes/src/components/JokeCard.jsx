@@ -31,7 +31,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         if (speed > shakeThreshold) {
           setShakeCount(prev => {
             const newCount = prev + 1;
-            if (newCount >= 5) {
+            if (newCount >= 8) {
               setIsRevealed(true);
               return 0;
             }
@@ -40,7 +40,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
 
           shakeCooldown = true;
           setTimeout(() => {
-            shakeCooldown = false;
+            shakeCooldown = true;
           }, 500);
         }
 
@@ -63,7 +63,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
 
   // Scratch handling remains the same
   const [scratchedAreas, setScratchedAreas] = useState(new Set());
-  const gridSize = 15;
+  const gridSize = 5;
 
   const handleScratchStart = (e) => {
     setIsDragging(true);
@@ -91,7 +91,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         const newProgress = (newAreas.size / (gridSize * gridSize)) * 100;
         setScratchProgress(newProgress);
         
-        if (newProgress > 70) {
+        if (newProgress > 40) {
           setIsRevealed(true);
         }
         
@@ -105,8 +105,8 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
   };
 
   const revealProgress = Math.max(
-    (scratchProgress / 70) * 100,
-    (shakeCount / 5) * 100
+    (scratchProgress / 45) * 100,
+    (shakeCount / 10) * 100
   );
 
   const generateShareMessage = () => {
@@ -293,8 +293,8 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
               </div>
               <p className="text-yellow-300 text-center px-4 animate-pulse">
                 {revealProgress < 30 && "Keep scratching or shaking!"}
-                {revealProgress >= 30 && revealProgress < 70 && "Almost there..."}
-                {revealProgress >= 70 && "Just a little more!"}
+                {revealProgress >= 30 && revealProgress < 50 && "Almost there..."}
+                {revealProgress >= 50 && "Just a little more!"}
               </p>
             </div>
           )}
