@@ -32,7 +32,7 @@ const JokeCard = ({ joke, likedJokes, setLikedJokes }) => {
         if (speed > shakeThreshold) {
           setShakeCount(prev => {
             const newCount = prev + 1;
-            if (newCount >= 8) {
+            if (newCount >= 5) {
               setIsRevealed(true);
               return 0;
             }
